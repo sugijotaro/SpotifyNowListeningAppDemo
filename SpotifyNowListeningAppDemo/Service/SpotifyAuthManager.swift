@@ -63,9 +63,12 @@ class SpotifyAuthManager: ObservableObject {
             guard let data = data else { return }
             if let tokenResponse = try? JSONDecoder().decode(TokenResponse.self, from: data) {
                 DispatchQueue.main.async {
+                    print("Access token fetched: \(tokenResponse.accessToken)")
                     self.accessToken = tokenResponse.accessToken
                     self.refreshToken = tokenResponse.refreshToken
                 }
+            } else {
+                print("Failed to fetch access token")
             }
         }
         task.resume()

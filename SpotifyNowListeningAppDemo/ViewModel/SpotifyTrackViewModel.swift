@@ -18,11 +18,13 @@ class SpotifyTrackViewModel: ObservableObject {
         request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            if let data = data {
-                let decodedResponse = try? JSONDecoder().decode(SpotifyTrack.self, from: data)
+            if let data = data, let decodedResponse = try? JSONDecoder().decode(SpotifyCurrentlyPlayingResponse.self, from: data) {
                 DispatchQueue.main.async {
-                    self.currentTrack = decodedResponse
+                    print("Current track fetched: \(decodedResponse.item.name)")
+                    self.currentTrack = decodedResponse.item
                 }
+            } else {
+                print("Failed to fetch current track")
             }
         }.resume()
     }

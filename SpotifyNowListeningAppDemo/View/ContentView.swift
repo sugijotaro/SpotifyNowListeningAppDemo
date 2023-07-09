@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @ObservedObject private var authManager = SpotifyAuthManager.shared
+    
     var body: some View {
-        if SpotifyAuthManager.shared.accessToken == nil {
-            SpotifyLoginView()
-        } else {
-            SpotifyTrackView()
+        Group {
+            if authManager.accessToken == nil {
+                SpotifyLoginView()
+            } else {
+                SpotifyTrackView()
+            }
         }
     }
 }

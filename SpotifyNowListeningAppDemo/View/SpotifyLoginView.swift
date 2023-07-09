@@ -18,11 +18,13 @@ struct SpotifyLoginView: View {
             let scheme = "SpotifyNowListeningAppDemo"
             
             let session = ASWebAuthenticationSession(url: authURL, callbackURLScheme: scheme) { callbackURL, error in
-                guard error == nil, let callbackURL = callbackURL else { return }
+                guard error == nil, let callbackURL = callbackURL else {
+                    print("Failed to complete authentication")
+                    return
+                }
                 let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems
                 if let code = queryItems?.first(where: { $0.name == "code" })?.value {
                     SpotifyAuthManager.shared.requestTokens(code: code)
-                    presentationMode.wrappedValue.dismiss()
                 }
             }
             session.presentationContextProvider = contextProvider

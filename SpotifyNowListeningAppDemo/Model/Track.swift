@@ -7,6 +7,10 @@
 
 import Foundation
 
+struct SpotifyCurrentlyPlayingResponse: Decodable {
+    let item: SpotifyTrack
+}
+
 struct SpotifyTrack: Decodable {
     let name: String
     let artists: [Artist]
