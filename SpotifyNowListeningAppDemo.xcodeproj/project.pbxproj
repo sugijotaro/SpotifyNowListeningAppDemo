@@ -11,6 +11,9 @@
 		0A13E5622A5A4AEA00CE63BC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13E5612A5A4AEA00CE63BC /* ContentView.swift */; };
 		0A13E5642A5A4AEC00CE63BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A13E5632A5A4AEC00CE63BC /* Assets.xcassets */; };
 		0A13E5672A5A4AEC00CE63BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A13E5662A5A4AEC00CE63BC /* Preview Assets.xcassets */; };
+		0A13E56F2A5A4B5C00CE63BC /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13E56E2A5A4B5C00CE63BC /* Track.swift */; };
+		0A13E5732A5A4B7D00CE63BC /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A13E5722A5A4B7D00CE63BC /* TrackViewModel.swift */; };
+		0A13E5762A5A4C5C00CE63BC /* Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A13E5752A5A4C5C00CE63BC /* Config.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +22,10 @@
 		0A13E5612A5A4AEA00CE63BC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0A13E5632A5A4AEC00CE63BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0A13E5662A5A4AEC00CE63BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0A13E56E2A5A4B5C00CE63BC /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		0A13E5722A5A4B7D00CE63BC /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		0A13E5742A5A4BB800CE63BC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		0A13E5752A5A4C5C00CE63BC /* Config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Config.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,9 +58,13 @@
 		0A13E55E2A5A4AEA00CE63BC /* SpotifyNowListeningAppDemo */ = {
 			isa = PBXGroup;
 			children = (
+				0A13E5742A5A4BB800CE63BC /* Info.plist */,
 				0A13E55F2A5A4AEA00CE63BC /* SpotifyNowListeningAppDemoApp.swift */,
-				0A13E5612A5A4AEA00CE63BC /* ContentView.swift */,
+				0A13E56D2A5A4B4C00CE63BC /* Model */,
+				0A13E5702A5A4B6900CE63BC /* View */,
+				0A13E5712A5A4B7000CE63BC /* ViewModel */,
 				0A13E5632A5A4AEC00CE63BC /* Assets.xcassets */,
+				0A13E5752A5A4C5C00CE63BC /* Config.plist */,
 				0A13E5652A5A4AEC00CE63BC /* Preview Content */,
 			);
 			path = SpotifyNowListeningAppDemo;
@@ -65,6 +76,30 @@
 				0A13E5662A5A4AEC00CE63BC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0A13E56D2A5A4B4C00CE63BC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A13E56E2A5A4B5C00CE63BC /* Track.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A13E5702A5A4B6900CE63BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0A13E5612A5A4AEA00CE63BC /* ContentView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0A13E5712A5A4B7000CE63BC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0A13E5722A5A4B7D00CE63BC /* TrackViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A13E5672A5A4AEC00CE63BC /* Preview Assets.xcassets in Resources */,
+				0A13E5762A5A4C5C00CE63BC /* Config.plist in Resources */,
 				0A13E5642A5A4AEC00CE63BC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,8 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A13E5732A5A4B7D00CE63BC /* TrackViewModel.swift in Sources */,
 				0A13E5622A5A4AEA00CE63BC /* ContentView.swift in Sources */,
 				0A13E5602A5A4AEA00CE63BC /* SpotifyNowListeningAppDemoApp.swift in Sources */,
+				0A13E56F2A5A4B5C00CE63BC /* Track.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +308,7 @@
 				DEVELOPMENT_TEAM = SY69L98Q38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotifyNowListeningAppDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +338,7 @@
 				DEVELOPMENT_TEAM = SY69L98Q38;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpotifyNowListeningAppDemo/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
