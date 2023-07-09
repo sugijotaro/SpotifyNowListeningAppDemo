@@ -18,6 +18,10 @@ struct SpotifyTrackView: View {
             } else {
                 Text("No track is currently playing.")
             }
+            
+            Button("Update Track") {
+                viewModel.getCurrentTrack()
+            }
         }.onAppear {
             viewModel.getCurrentTrack()
         }
