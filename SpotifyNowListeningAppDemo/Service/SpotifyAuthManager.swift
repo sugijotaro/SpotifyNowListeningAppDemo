@@ -10,7 +10,7 @@ import AuthenticationServices
 
 class SpotifyAuthManager: ObservableObject {
     static let shared = SpotifyAuthManager()
-
+    
     @Published var accessToken: String? {
         didSet {
             UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
@@ -94,6 +94,42 @@ class SpotifyAuthManager: ObservableObject {
         enum CodingKeys: String, CodingKey {
             case accessToken = "access_token"
             case refreshToken = "refresh_token"
+        }
+    }
+    
+    func refreshAccessToken() {
+        guard let refreshToken = refreshToken,
+              let url = URL(string: "https://accounts.spotify.com/api/token") else { return }
+        
+        var components = URLComponents()
+        components.queryItems = [
+            URLQueryItem(name: "grant_type", value: "refresh_token"),
+            URLQueryItem(name: "refresh_token", value: refreshToken),
+            URLQueryItem(name: "client_id", value: clientId),
+            URLQueryItem(name: "client_secret", value: clientSecret)
+        ]
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = components.query?.data(using: .utf8)
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let data = data else { return }
+            if let tokenResponse = try? JSONDecoder().decode(RefreshedTokenResponse.self, from: data) {
+                DispatchQueue.main.async {
+                    self.accessToken = tokenResponse.accessToken
+                }
+            }
+        }
+        task.resume()
+    }
+    
+    private struct RefreshedTokenResponse: Decodable {
+        let accessToken: String
+        
+        enum CodingKeys: String, CodingKey {
+            case accessToken = "access_token"
         }
     }
 }

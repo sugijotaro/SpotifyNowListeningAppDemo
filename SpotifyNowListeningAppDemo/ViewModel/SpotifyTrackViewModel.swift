@@ -11,6 +11,10 @@ class SpotifyTrackViewModel: ObservableObject {
     @Published var currentTrack: SpotifyTrack?
     
     func getCurrentTrack() {
+        if SpotifyAuthManager.shared.accessToken == nil {
+            SpotifyAuthManager.shared.refreshAccessToken()
+            return
+        }
         guard let accessToken = SpotifyAuthManager.shared.accessToken else { return }
         let url = URL(string: "https://api.spotify.com/v1/me/player/currently-playing")!
         
