@@ -10,9 +10,17 @@ import AuthenticationServices
 
 class SpotifyAuthManager: ObservableObject {
     static let shared = SpotifyAuthManager()
-    
-    @Published var accessToken: String?
-    @Published var refreshToken: String?
+
+    @Published var accessToken: String? {
+        didSet {
+            UserDefaults.standard.setValue(accessToken, forKey: "accessToken")
+        }
+    }
+    @Published var refreshToken: String? {
+        didSet {
+            UserDefaults.standard.setValue(refreshToken, forKey: "refreshToken")
+        }
+    }
     
     private var clientId: String {
         getAPIKey(for: "CLIENT_ID")
@@ -31,6 +39,11 @@ class SpotifyAuthManager: ObservableObject {
             fatalError("Failed to get \(key) from Config.plist")
         }
         return value
+    }
+    
+    init() {
+        self.accessToken = UserDefaults.standard.string(forKey: "accessToken")
+        self.refreshToken = UserDefaults.standard.string(forKey: "refreshToken")
     }
     
     func getAuthURL() -> URL {
