@@ -9,7 +9,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>NowListeningAppDemo</string>
+				<string>SpotifyNowListeningAppDemo</string>
 			</array>
 		</dict>
 	</array>

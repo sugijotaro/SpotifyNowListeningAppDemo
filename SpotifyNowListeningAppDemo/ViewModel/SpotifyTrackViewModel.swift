@@ -1,5 +1,5 @@
 //
-//  TrackViewModel.swift
+//  SpotifyTrackViewModel.swift
 //  SpotifyNowListeningAppDemo
 //
 //  Created by JotaroSugiyama on 2023/07/09.
@@ -7,19 +7,11 @@
 
 import Foundation
 
-class TrackViewModel: ObservableObject {
-    @Published var currentTrack: Track?
-    
-    private let accessToken: String = {
-        guard let urlBasePath = Bundle.main.path(forResource: "Config", ofType: "plist"),
-              let plist = NSDictionary(contentsOfFile: urlBasePath),
-              let urlBase = plist["API_KEY"] as? String else {
-            fatalError("Failed to get API_KEY from Config.plist")
-        }
-        return urlBase
-    }()
+class SpotifyTrackViewModel: ObservableObject {
+    @Published var currentTrack: SpotifyTrack?
     
     func getCurrentTrack() {
+        guard let accessToken = SpotifyAuthManager.shared.accessToken else { return }
         let url = URL(string: "https://api.spotify.com/v1/me/player/currently-playing")!
         
         var request = URLRequest(url: url)
@@ -27,7 +19,7 @@ class TrackViewModel: ObservableObject {
         
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                let decodedResponse = try? JSONDecoder().decode(Track.self, from: data)
+                let decodedResponse = try? JSONDecoder().decode(SpotifyTrack.self, from: data)
                 DispatchQueue.main.async {
                     self.currentTrack = decodedResponse
                 }

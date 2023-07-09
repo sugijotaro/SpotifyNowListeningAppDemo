@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Track: Decodable {
+struct SpotifyTrack: Decodable {
     let name: String
     let artists: [Artist]
 
